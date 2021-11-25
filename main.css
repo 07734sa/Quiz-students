@@ -1,0 +1,304 @@
+/*
+- Nedan hygienkrav ska vara uppfyllda oavsett betygsnivå.
+- vara responsiv (mobile first, minst 3 olika breakpoints)
+- semantiskt korrekt använda flexboxes alternativt CSS grid
+- all data och status ska finnas i JavaScript, dvs ska ej använda DOM som ”single point of truth”
+- all källkod ska vara versionshanterad i Git
+- spelet ska vara publicerat på Netlify
+*/
+
+    
+
+body {
+    margin: 0;  
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+/*-----------------------------------*/
+/*---------header--------------------*/
+
+.headWrap {
+    display: flex;
+    justify-content: center;
+    width: 100vw; 
+    border: 1px solid black;
+    height: 100px; 
+    background-color: rgb(255, 188, 62);
+
+}
+
+header {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+}
+
+h1 {
+    padding-left: 20px;
+    font-family: 'Rock Salt', cursive;
+    font-size: 1.5rem;
+    width: 100%;
+    text-align: center;
+}
+
+/*----------main-------------------*/
+
+main {
+    display: flex;
+    padding-bottom: 20px;
+    box-sizing: border-box;
+}
+
+.secWrapper {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    background-color: rgb(230, 227, 227);
+    box-sizing: border-box;
+}
+
+/*---------photos----------*/
+
+.photos {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    height: 50vh;
+    background-color: rgb(253, 246, 246);
+    box-sizing: border-box;
+}
+
+img {
+    height: 100%;
+}
+
+/*---------textWrap---------*/
+
+h2 {
+    display: none;
+}
+
+.textWrap {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    max-height: auto ;
+    padding: 0px 10px;
+    box-sizing: border-box;
+    background-color: rgb(253, 246, 246);
+}
+
+/*----Guess buttons-wrapper--------*/
+
+.nameWrap{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.guessContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+/*----Buttons in JS with names----*/
+
+.guess {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 95vw;
+    height: 60px;
+    margin: 10px 0px;
+    padding: 10px 0px;
+    font-size: 1.2rem;
+    background-color: rgb(255, 188, 62);
+    border: 1px solid black;
+    border-radius: 7px;
+    box-sizing: border-box;
+}
+
+.guess.correct {
+    background-color: green;
+}
+
+/*------Show lightbox--------------*/
+
+#lightboxWrapper {
+    display: none;
+    background-color: rgba(245, 245, 245, 0.795);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+#lightboxWrapper.show {
+    display: flex;
+}
+
+/*----------------------------------*/
+
+#resultWrap {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+/*----SHOW/HIDE RESULT BUTTON------*/
+
+.resultButton {
+    display: none;
+}
+
+.resultButton.show {
+    display: flex;
+    justify-content: center;
+    position: fixed;
+    top: 35vh;
+    left: 39vw;
+    width: 100px;
+    padding: 10px 0px;
+    margin-top: 20px;
+    border-radius: 10px;
+    font-weight: bold;
+    background-color: rgb(125, 211, 125);
+    z-index: 10;
+}
+
+/*--------------------------------------*/
+#result{
+    display: none;
+}
+
+#result.show {
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    top: 35vh;
+    left: 1vw;
+    width: 100%;
+    font-size: 2rem;
+    z-index: 1000;
+}
+/*-----------------------------------------*/
+#playAgainButton {
+    display: none;
+
+    background-color: rgb(238, 174, 54);
+}
+
+#playAgainButton.show {
+    display: flex;
+    justify-content: center;
+    position: fixed;
+    top: 25vh;
+    left: 39vw;
+    z-index: 10;
+    width: 100px;
+    padding: 10px 0px;
+    margin-top: 20px;
+    border-radius: 10px;
+    font-weight: bold;
+}
+
+footer {
+    height: 50px;
+    margin-top: 0;
+    background-color: rgb(255, 188, 62);
+
+}
+
+/****************************************/
+
+
+@media only screen and (min-width: 768px) {
+
+    .secWrapper {
+        flex-direction: row;
+        justify-content: center;
+    }   
+
+    .photos {
+        max-width: 60%;
+        height: 100%;
+    }
+
+    img {
+        height: 100%;
+        overflow: hidden;
+    }
+
+    h2 {
+        display: flex;
+        justify-content: center;
+    }
+
+    .textWrap{
+        width: 40%;
+        margin-left: 5px;
+        padding: 20px 20px;
+    }
+
+    .nameWrap{
+        justify-content: center;
+    }
+    .resultButton.show,
+    #playAgainButton.show {
+        top: 35vh;
+        left: 38vw;
+        width: 200px;
+        padding: 20px 0px;
+        margin-top: 20px;
+        border-radius: 7px;
+        font-size: 1.5rem;
+        font-weight: bold;
+    }  
+    
+    #playAgainButton.show {
+        top: 20vh;
+    }
+    } 
+    
+
+    @media only screen and (min-width: 992px) {
+
+        header {
+            max-width: 900px;
+        }
+
+        h1 {
+            font-size: 2rem;
+        }
+
+        main {
+            max-width: 900px;
+            margin: auto;
+        }
+
+        #guessContainer {
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: space-evenly;
+        }
+
+        #guess {
+            width: 45%;
+            height: 70px;
+        }
+        .resultButton.show,
+        #playAgainButton.show {
+            left: 44vw;
+        }
+    }   
