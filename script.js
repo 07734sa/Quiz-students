@@ -25,7 +25,6 @@ const resultButtonEl = document.querySelector('.resultButton');
 
 //-------------ARRAYS-----------------------------------------------------------------------------
 
-
 const students = [
 	{
 		"name" : "Adi Dzocaj",
@@ -184,9 +183,8 @@ const students = [
 		"image": "assets/images/students/wiktoria-dobrzewinska.jpg",
 	},
 ];
-const filtredArray = [];
 
-//----------SHUFFLE STUDENTS-------------------------------------------------------------------------
+//----------SHUFFLE STUDENTS-------------------------------------------------
 
 const shuffleArray = (array) => { //shuffle names in copied array
     for (let i = array.length -1; i > 0; i--) {
@@ -200,8 +198,7 @@ const shuffleArray = (array) => { //shuffle names in copied array
 shuffleArray(students);
 console.log(students);
 
-//-----------SHOW IMAGE AND NAMES--------------------------------------------------------------
-
+//-----------SHOW IMAGE AND NAMES-------------------------------------------
 let correctGuessIndex = ""; // Måste ligga utanför. getStudents kan inte komma åt den inne i scopet
 let names;
 
@@ -214,7 +211,7 @@ const showStudent = () => { // skapar en funktion för att kunna kalla på den i
 	photoEl.src = `students/${correctGuessIndex.image}`; //Plockar fram bild
 
 	shuffleArray(studentSlice); //shufflar slice-arna så rätt svar inte alltid är på samma plats
-	console.log(correctGuessIndex);
+	//console.log(correctGuessIndex);
 
  	names = studentSlice.map(students => students.name); //Plockar ut de fyra namnen.
 	names.forEach(name => { //För varje namn skapas en knapp.
@@ -232,63 +229,59 @@ let correctPoints = 0;
 guessContainer.addEventListener('click', e  => {
 	
 	e.preventDefault();
-    guesses ++; //Antal gissade ggr
 
-	if (guesses < 11){ //man kan ändra hur lång spelet ska vara. Här ska 10 foton visas
-
+	if (guesses < 10){ //man kan ändra hur lång spelet ska vara. Här ska 10 foton visas
 		if ('BUTTON' === e.target.tagName){ //Om target är en button...
 			console.log(e.target);
-			
-		}	if (e.target.innerText === correctGuessIndex.name) { //...om namnet på knappen hör ihop med bilden.
+			guesses ++; //Antal gissade ggr
+			if (e.target.innerText === correctGuessIndex.name) { //...om namnet på knappen hör ihop med bilden.
 				correctPoints++ //  Om det är rätt, 1 poäng.
-
-				guessContainer.classList.add('correct')
 
 		}	else if (guesses === 10){ //När spelet har visat 10 bilder visas lightboxen...
 				lightboxEl.classList.add('show');
 				resultButtonEl.classList.add('show');//...och resultatknappen
 		}
-
-		showStudent();
+		}
 		
+		showStudent();	
 	};
+    console.log("Test", guesses)
 
-//----------- HIDE RESULT BUTTON WHEN CLICKED ON. THEN SHOW SCORE----------------
-
-	resultButtonEl.addEventListener('click', e => {
-		e.preventDefault();
-		//console.log(e.target)
-		
-		if ('BUTTON' === e.target.tagName) {
-				
-			resultButtonEl.classList.remove('show'); // resultatknappen döljs
-			resultEl.classList.add('show');
-			resultEl.innerText =`Antal rätt: ${correctPoints}/${guesses}`; //poäng
-			playAgainButtonEl.classList.add('show');
-
-		}	
-	});
-
-	//--------PLAY AGAIN BUTTON--------------------------------------
-
-	playAgainButtonEl.addEventListener('click', e => {
-		e.preventDefault();
-	
-		if ('BUTTON' === e.target.tagName) {
-			guesses = 0; 	//När spelet är slut nollställs räknaren
-			correctPoints = 0;
-
-			resultEl.classList.remove('show');	//Dölj resultat
-			playAgainButtonEl.classList.remove('show'); //Dölj splela-igen-knappen
-			lightboxEl.classList.remove('show'); // Dölj lightbox
-		}				
-		showStudent();
-
-	});
 });
+
+//----------- HIDE RESULT BUTTON WHEN CLICKED ON. THEN SHOW SCORE--------------
+
+resultButtonEl.addEventListener('click', e => {
+	e.preventDefault();
+	console.log(e.target)
+	
+	if ('BUTTON' === e.target.tagName) {
+			
+		resultButtonEl.classList.remove('show'); // resultatknappen döljs
+		resultEl.classList.add('show');
+		resultEl.innerText =`Antal rätt: ${correctPoints}/${guesses}`; //poäng
+		playAgainButtonEl.classList.add('show');
+	}	
+});
+
+//------------------PLAY AGAIN BUTTON--------------------------------------
+
+playAgainButtonEl.addEventListener('click', e => {
+
+	if ('BUTTON' === e.target.tagName) {
+		guesses = 0; 	//När spelet är slut nollställs räknaren
+		correctPoints = 0;
+
+		resultEl.classList.remove('show');	//Dölj resultat
+		playAgainButtonEl.classList.remove('show'); //Dölj splela-igen-knappen
+		lightboxEl.classList.remove('show'); // Dölj lightbox
+	}				
+	showStudent();
+});
+
 showStudent();
 
-//-----------------------------------------------------------------------
+//-------------------------------------------------------------------------------
 
 
 
