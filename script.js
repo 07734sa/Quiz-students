@@ -186,6 +186,8 @@ const students = [
 const studentsCopy = [...students]; //Gör en kopia av students
 //console.log(studentsCopy);
 
+const filtredStudents = [];
+
 //----------SHUFFLE STUDENTS-------------------------------------------------
 
 const shuffleArray = (array) => { //shuffle names in copied array
@@ -232,20 +234,25 @@ guessContainer.addEventListener('click', e  => {
 
 	if (guesses < 10){ //man kan ändra hur lång spelet ska vara. Här ska 10 foton visas
 		if ('BUTTON' === e.target.tagName) { //Om target är en button...
-
 			guesses ++; //Antal gissade ggr
 			console.log(e.target);
 
 			if (e.target.innerText === correctGuessIndex.name) {	 //...om namnet på knappen hör ihop med bilden.
 				correctPoints++ //  Om det är rätt, 1 poäng
-				e.target.setAttribute('class', 'correct')
-
+				e.target.classList.add('correct')
+				
 			}	else if (guesses === 10) { //När spelet har visat 10 bilder visas lightboxen...
 				lightboxEl.classList.add('show');
 				resultButtonEl.classList.add('show');//...och resultatknappen
+
+			}	else {
+				e.target.classList.add('wrong')
 			}
 		};
-		showStudent();	    
+
+		setTimeout(() => {
+			showStudent();
+		}, 500);
 	};
 });
 
