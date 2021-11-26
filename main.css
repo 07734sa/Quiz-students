@@ -131,7 +131,7 @@ h2 {
 .correct:active {
     background-color: green;
 }
-.incorrect:active {
+.wrong:active {
     background-color: red;
 }
 

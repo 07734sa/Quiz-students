@@ -240,6 +240,9 @@ guessContainer.addEventListener('click', e  => {
 			if (e.target.innerText === correctGuessIndex.name) {	 //...om namnet på knappen hör ihop med bilden.
 				correctPoints++ //  Om det är rätt, 1 poäng
 				e.target.classList.add('correct')
+
+				filtredStudents.push(e.target.innerText);			
+				console.log(filtredStudents);
 				
 			}	else if (guesses === 10) { //När spelet har visat 10 bilder visas lightboxen...
 				lightboxEl.classList.add('show');
