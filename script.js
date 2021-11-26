@@ -14,7 +14,6 @@ Väl Godkänt
 - Håll reda på senaste resultat och vid varje ny gissning visa om man förbättrade eller försämrade sig denna gången
 */
 
-const nameButtonsEl = document.querySelectorAll('.guess');
 const photoEl = document.querySelector('.photo');
 const guessContainer = document.querySelector('.guessContainer');
 const lightboxEl = document.querySelector('#lightboxWrapper')
@@ -184,6 +183,9 @@ const students = [
 	},
 ];
 
+const studentsCopy = [...students]; //Gör en kopia av students
+//console.log(studentsCopy);
+
 //----------SHUFFLE STUDENTS-------------------------------------------------
 
 const shuffleArray = (array) => { //shuffle names in copied array
@@ -194,20 +196,19 @@ const shuffleArray = (array) => { //shuffle names in copied array
         array[j] = temp;
     }
 };
-
-shuffleArray(students);
-console.log(students);
+shuffleArray(studentsCopy);
 
 //-----------SHOW IMAGE AND NAMES-------------------------------------------
+
 let correctGuessIndex = ""; // Måste ligga utanför. getStudents kan inte komma åt den inne i scopet
 let names;
 
 const showStudent = () => { // skapar en funktion för att kunna kalla på den igen
 	guessContainer.innerHTML = ""; //Gör att fler knappar ej skapas.
-	shuffleArray(students); //shufflar studenterna
+	shuffleArray(studentsCopy); //shufflar studenterna
 
-	const studentSlice = students.slice(0,4); // Plockar ut fyra första studenterna
-    correctGuessIndex = students[1];	//Rätt svar på index 1
+	const studentSlice = studentsCopy.slice(0,4); // Plockar ut fyra första studenterna
+    correctGuessIndex = studentsCopy[1];	//Rätt svar på index 1
 	photoEl.src = `students/${correctGuessIndex.image}`; //Plockar fram bild
 
 	shuffleArray(studentSlice); //shufflar slice-arna så rätt svar inte alltid är på samma plats
@@ -227,26 +228,25 @@ let guesses = 0;
 let correctPoints = 0;
 
 guessContainer.addEventListener('click', e  => {
-	
 	e.preventDefault();
 
 	if (guesses < 10){ //man kan ändra hur lång spelet ska vara. Här ska 10 foton visas
-		if ('BUTTON' === e.target.tagName){ //Om target är en button...
-			console.log(e.target);
-			guesses ++; //Antal gissade ggr
-			if (e.target.innerText === correctGuessIndex.name) { //...om namnet på knappen hör ihop med bilden.
-				correctPoints++ //  Om det är rätt, 1 poäng.
+		if ('BUTTON' === e.target.tagName) { //Om target är en button...
 
-		}	else if (guesses === 10){ //När spelet har visat 10 bilder visas lightboxen...
+			guesses ++; //Antal gissade ggr
+			console.log(e.target);
+
+			if (e.target.innerText === correctGuessIndex.name) {	 //...om namnet på knappen hör ihop med bilden.
+				correctPoints++ //  Om det är rätt, 1 poäng
+				e.target.setAttribute('class', 'correct')
+
+			}	else if (guesses === 10) { //När spelet har visat 10 bilder visas lightboxen...
 				lightboxEl.classList.add('show');
 				resultButtonEl.classList.add('show');//...och resultatknappen
-		}
-		}
-		
-		showStudent();	
+			}
+		};
+		showStudent();	    
 	};
-    console.log("Test", guesses)
-
 });
 
 //----------- HIDE RESULT BUTTON WHEN CLICKED ON. THEN SHOW SCORE--------------
