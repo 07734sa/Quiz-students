@@ -180,7 +180,7 @@ h2 {
     z-index: 10;
 }
 
-/*--------------------------------------*/
+/*----------Result text----------------------------*/
 #result{
     display: none;
 }
@@ -195,6 +195,11 @@ h2 {
     font-size: 2rem;
     z-index: 1000;
 }
+/*---------Show correct/wrong answers---------------*/
+
+
+
+
 /*-----------------------------------------*/
 #playAgainButton {
     display: none;

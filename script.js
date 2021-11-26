@@ -232,31 +232,29 @@ let correctPoints = 0;
 guessContainer.addEventListener('click', e  => {
 	e.preventDefault();
 
-	if (guesses < 10){ //man kan ändra hur lång spelet ska vara. Här ska 10 foton visas
-		if ('BUTTON' === e.target.tagName) { //Om target är en button...
-			guesses ++; //Antal gissade ggr
-			console.log(e.target);
+	if ('BUTTON' === e.target.tagName && guesses < 10){ //man kan ändra hur lång spelet ska vara. Här ska 10 foton visas
+		//Om target är en button...
+		guesses ++; //Antal gissade ggr
+		console.log(e.target);
+	}
 
-			if (e.target.innerText === correctGuessIndex.name) {	 //...om namnet på knappen hör ihop med bilden.
-				correctPoints++ //  Om det är rätt, 1 poäng
-				e.target.classList.add('correct')
+	if (e.target.innerText === correctGuessIndex.name) {	 //...om namnet på knappen hör ihop med bilden.
+		correctPoints++ //  Om det är rätt, 1 poäng
+		e.target.classList.add('correct')
 
-				filtredStudents.push(e.target.innerText);			
-				console.log(filtredStudents);
+		filtredStudents.push(e.target.innerText);			
+		console.log(filtredStudents);
 				
-			}	else if (guesses === 10) { //När spelet har visat 10 bilder visas lightboxen...
-				lightboxEl.classList.add('show');
-				resultButtonEl.classList.add('show');//...och resultatknappen
+	}	else if (guesses === 10) { //När spelet har visat 10 bilder visas lightboxen...
+			lightboxEl.classList.add('show');
+			resultButtonEl.classList.add('show');//...och resultatknappen
 
-			}	else {
-				e.target.classList.add('wrong')
-			}
-		};
-
-		setTimeout(() => {
-			showStudent();
-		}, 500);
-	};
+	}	else {
+			e.target.classList.add('wrong')
+	}
+	setTimeout(() => {
+		showStudent();
+	}, 500);
 });
 
 //----------- HIDE RESULT BUTTON WHEN CLICKED ON. THEN SHOW SCORE--------------
@@ -292,6 +290,5 @@ playAgainButtonEl.addEventListener('click', e => {
 showStudent();
 
 //-------------------------------------------------------------------------------
-
 
 
