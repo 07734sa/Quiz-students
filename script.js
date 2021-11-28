@@ -17,7 +17,6 @@ Väl Godkänt
 const photoEl = document.querySelector('.photo');
 const guessContainer = document.querySelector('.guessContainer');
 const lightboxEl = document.querySelector('#lightboxWrapper')
-const photosEl = document.querySelector('.photos');
 const playAgainButtonEl = document.querySelector('#playAgainButton')
 const resultEl = document.querySelector('#result');
 const resultButtonEl = document.querySelector('.resultButton');
@@ -185,8 +184,7 @@ const students = [
 
 const studentsCopy = [...students]; //Gör en kopia av students
 //console.log(studentsCopy);
-
-const filtredStudents = [];
+//const userGuesses = [];
 
 //----------SHUFFLE STUDENTS-------------------------------------------------
 
@@ -221,19 +219,17 @@ const showStudent = () => { // skapar en funktion för att kunna kalla på den i
 		guessContainer.innerHTML += `<button class="guess">${name}</button>`;
 	});
 };
-//-----------SHOW LIVE IF CORRECT GUESS OR NOT--------------------------------
-
 
 //-----------ADD CLICK EVENTS FOR EACH NAME-----------------------------------
 
 let guesses = 0; 
 let correctPoints = 0;
+//let userGuess = false;
 
 guessContainer.addEventListener('click', e  => {
 	e.preventDefault();
 
-	if ('BUTTON' === e.target.tagName && guesses < 10){ //man kan ändra hur lång spelet ska vara. Här ska 10 foton visas
-		//Om target är en button...
+	if ('BUTTON' === e.target.tagName && guesses < 10){ //Om target är en button... Här ska 10 foton visas
 		guesses ++; //Antal gissade ggr
 		console.log(e.target);
 	}
@@ -241,16 +237,16 @@ guessContainer.addEventListener('click', e  => {
 	if (e.target.innerText === correctGuessIndex.name) {	 //...om namnet på knappen hör ihop med bilden.
 		correctPoints++ //  Om det är rätt, 1 poäng
 		e.target.classList.add('correct')
-
-		filtredStudents.push(e.target.innerText);			
-		console.log(filtredStudents);
-				
+		//userGuesses.push(studentsCopy[1]);
+		//userGuess = true;
+		
 	}	else if (guesses === 10) { //När spelet har visat 10 bilder visas lightboxen...
 			lightboxEl.classList.add('show');
 			resultButtonEl.classList.add('show');//...och resultatknappen
 
 	}	else {
 			e.target.classList.add('wrong')
+			//userGuess = false;
 	}
 	setTimeout(() => {
 		showStudent();
@@ -262,6 +258,19 @@ guessContainer.addEventListener('click', e  => {
 resultButtonEl.addEventListener('click', e => {
 	e.preventDefault();
 	console.log(e.target)
+
+	/*
+	//Filter student
+	userGuesses.filter(student => student.userGuess === false) //filtrera ut fel svar
+	userGuesses.forEach(guess  => { // för varje fel svar, visa bild och
+		wrongStudentsEl.innerHTML += `
+		<figure>
+			<img src="students/${guess.image}" alt="wrongstudent">
+			<figcaption>${guess.name}</figcaption>
+		</figure>
+		`	
+	});
+	*/
 	
 	if ('BUTTON' === e.target.tagName) {
 			
@@ -290,5 +299,4 @@ playAgainButtonEl.addEventListener('click', e => {
 showStudent();
 
 //-------------------------------------------------------------------------------
-
 

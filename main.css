@@ -188,17 +188,13 @@ h2 {
 #result.show {
     display: flex;
     justify-content: center;
-    position: absolute;
+    position: fixed;
     top: 35vh;
     left: 1vw;
     width: 100%;
     font-size: 2rem;
     z-index: 1000;
 }
-/*---------Show correct/wrong answers---------------*/
-
-
-
 
 /*-----------------------------------------*/
 #playAgainButton {
@@ -220,15 +216,7 @@ h2 {
     font-weight: bold;
 }
 
-footer {
-    height: 50px;
-    margin-top: 0;
-    background-color: rgb(255, 188, 62);
-
-}
-
 /****************************************/
-
 
 @media only screen and (min-width: 768px) {
 
@@ -276,8 +264,9 @@ footer {
     #playAgainButton.show {
         top: 20vh;
     }
-    } 
-    
+    }
+     
+    /****************************************/
 
     @media only screen and (min-width: 992px) {
 
