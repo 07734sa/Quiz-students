@@ -123,6 +123,7 @@ h2 {
     padding: 10px 0px;
     font-size: 1.2rem;
     background-color: rgb(255, 188, 62);
+    color: black;
     border: 1px solid black;
     border-radius: 7px;
     box-sizing: border-box;
@@ -265,7 +266,7 @@ h2 {
         top: 20vh;
     }
     }
-     
+
     /****************************************/
 
     @media only screen and (min-width: 992px) {
