@@ -102,7 +102,7 @@ h2 {
     box-sizing: border-box;
 }
 
-.guessContainer {
+.guessBtnWrap {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -284,16 +284,12 @@ h2 {
             margin: auto;
         }
 
-        #guessContainer {
+        .guess{
             flex-direction: row;
             flex-wrap: wrap;
             justify-content: space-evenly;
         }
 
-        #guess {
-            width: 45%;
-            height: 70px;
-        }
         .resultButton.show,
         #playAgainButton.show {
             left: 44vw;
