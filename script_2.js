@@ -165,14 +165,11 @@ const students = [
 		"image": "img/wiktoria-dobrzewinska.jpg",
 	},
 ];
-//console.log(students);
-
-let names;
-let correctGuessIndex = "";
 let correctAnswer = [];  
 let incorrectAnswer = [];  
-let removeShowedObj = [];
-
+//---------------------------
+let names;
+let correctGuessIndex = "";
 let guesses = 0;
 let correctPoints = 0;
 
@@ -195,7 +192,7 @@ const showStudent = () => { // skapar en funktion för att kunna kalla på den i
 	shuffleArray(students); //shufflar studenterna
 
 	const studentSlice = students.slice(0,4); // Plockar ut fyra första studenterna
-    correctGuessIndex = students[1];	//Rätt svar på index 1
+    correctGuessIndex = students[0];	//Rätt svar på index 
 	photoEl.src = correctGuessIndex.image; //Plockar fram bild
 
 	shuffleArray(studentSlice); //shufflar slice-arna så rätt svar inte alltid är på samma plats
@@ -210,8 +207,6 @@ const showStudent = () => { // skapar en funktion för att kunna kalla på den i
 
 //------------START GAME------------------------------------------------------
 
-
-
 guessBtnWrap.addEventListener('click', e => {
     e.preventDefault();
   
@@ -222,15 +217,11 @@ guessBtnWrap.addEventListener('click', e => {
             correctPoints++;
 
             correctAnswer.push(correctGuessIndex)
-            removeShowedObj.pop(correctGuessIndex)
-            console.log(correctAnswer);
+            console.log(correctAnswer)
 
         }  else {
             incorrectAnswer.push(correctGuessIndex)
-            removeShowedObj.pop(correctGuessIndex)
-
             console.log(incorrectAnswer)
-
         }
 
         if (guesses === 10) {
@@ -241,13 +232,11 @@ guessBtnWrap.addEventListener('click', e => {
     showStudent();
 });
 
-
 //----------------RESULT BUTTON-------------------------------------------
 
 resultButtonEl.addEventListener('click', e => {
 	e.preventDefault();
 	console.log(e.target)
-
 
 	if ('BUTTON' === e.target.tagName) {
 
@@ -258,7 +247,6 @@ resultButtonEl.addEventListener('click', e => {
 	}	
 });
 
-
 //------------------PLAY AGAIN BUTTON--------------------------------------
 
 playAgainButtonEl.addEventListener('click', e => {
@@ -267,7 +255,6 @@ playAgainButtonEl.addEventListener('click', e => {
         //Rensar arrays
         correctAnswer = [];  
         incorrectAnswer = [];  
-        removeShowedObj = [];
     
 		guesses = 0; 	//När spelet är slut nollställs räknaren
 		correctPoints = 0;
