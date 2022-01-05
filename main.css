@@ -24,7 +24,7 @@ body {
     border: 1px solid black;
     height: 100px; 
     background-color: rgb(255, 188, 62);
-
+    box-sizing: border-box;
 }
 
 header {
@@ -47,8 +47,10 @@ h1 {
 
 main {
     display: flex;
+    width: 100vw;
     padding-bottom: 20px;
     box-sizing: border-box;
+    position: relative;
 }
 
 .secWrapper {
@@ -86,7 +88,6 @@ h2 {
     flex-direction: column;
     justify-content: center;
     width: 100%;
-    max-height: auto ;
     padding: 0px 10px;
     box-sizing: border-box;
     background-color: rgb(253, 246, 246);
@@ -110,6 +111,9 @@ h2 {
 }
 
 /*----Buttons in JS with names----*/
+.guess {
+    display: none;
+}
 
 .guess {
     display: flex;
@@ -140,22 +144,27 @@ h2 {
 
 #lightboxWrapper {
     display: none;
-    background-color: rgba(245, 245, 245, 0.795);
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
 }
 
 #lightboxWrapper.show {
     display: flex;
+    flex-direction: column;
+    background-color: rgba(245, 245, 245, 0.796);
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0px;
 }
 
 /*----------------------------------*/
 
 #resultWrap {
-    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 100px;
     width: 100%;
     height: 100%;
 }
@@ -178,39 +187,86 @@ h2 {
     border-radius: 10px;
     font-weight: bold;
     background-color: rgb(125, 211, 125);
-    z-index: 10;
+    z-index: 1000;
 }
 
 /*----------Result text----------------------------*/
-#result{
+#result {
     display: none;
 }
 
 #result.show {
     display: flex;
     justify-content: center;
-    position: fixed;
-    top: 35vh;
-    left: 1vw;
+    padding-top: 10px;
+    position: absolute;
+    top: 0px;
     width: 100%;
+    height: 100px;
+    margin: 0;
+    background-color: whitesmoke;
     font-size: 2rem;
     z-index: 1000;
 }
 
+span {
+    display: none;
+}
+
+span.show {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    position: absolute;
+    top: 65px;
+    z-index: 9999999;
+}
+
+/*------------Wrong guesses------------------------*/
+
+.wrongStudent {
+    display: none;
+}
+
+.wrongStudent.show {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    background-color: whitesmoke;
+    position: absolute;
+    top: 100px;
+    z-index: 9999999;
+}
+
+figure {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
+    width: 100%;    
+    border: 2px solid red;
+}
+
+figure img {
+    width: 100%;
+}
+
+
 /*-----------------------------------------*/
 #playAgainButton {
     display: none;
-    background-color: rgb(238, 174, 54);
 }
 
 #playAgainButton.show {
     display: flex;
     justify-content: center;
-    position: fixed;
-    top: 28vh;
-    left: 39vw;
-    z-index: 10;
-    width: 100px;
+    align-items: center;
+    background-color: rgb(238, 174, 54);
+    z-index: 999999999;
+    width: 100vw;
+    height: 60px;
     padding: 10px 0px;
     margin-top: 20px;
     border-radius: 10px;
