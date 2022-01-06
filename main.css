@@ -10,8 +10,9 @@
     
 
 body {
-    margin: 0;  
+    margin: auto;  
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    background-color: whitesmoke;
 }
 
 /*-----------------------------------*/
@@ -30,17 +31,15 @@ body {
 header {
     display: flex;
     align-items: center;
+    justify-content: center;
     width: 100%;
     height: 100%;
     box-sizing: border-box;
 }
 
 h1 {
-    padding-left: 20px;
     font-family: 'Rock Salt', cursive;
     font-size: 1.5rem;
-    width: 100%;
-    text-align: center;
 }
 
 /*----------main-------------------*/
@@ -165,6 +164,7 @@ h2 {
     align-items: center;
     position: absolute;
     top: 100px;
+    left: 0;
     width: 100%;
     height: 100%;
 }
@@ -201,9 +201,10 @@ h2 {
     padding-top: 10px;
     position: absolute;
     top: 0px;
-    width: 100%;
+    left: 0px;
+    width: 100vw;
     height: 100px;
-    margin: 0;
+    margin: auto;
     background-color: whitesmoke;
     font-size: 2rem;
     z-index: 1000;
@@ -216,9 +217,10 @@ span {
 span.show {
     display: flex;
     justify-content: center;
-    width: 100%;
+    width: 100vw;
     position: absolute;
     top: 65px;
+    left: 0;
     z-index: 9999999;
 }
 
@@ -236,7 +238,7 @@ span.show {
     width: 100vw;
     background-color: whitesmoke;
     position: absolute;
-    top: 100px;
+    top: 110px;
     z-index: 9999999;
 }
 
@@ -244,32 +246,34 @@ figure {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 0;
-    width: 100%;    
-    border: 2px solid red;
+    height: 50vh;    
 }
-
-figure img {
-    width: 100%;
-}
-
 
 /*-----------------------------------------*/
-#playAgainButton {
+.playAgainButton {
     display: none;
 }
 
-#playAgainButton.show {
+.playAgainButton.show {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    position: absolute;
+    top: 80px;
+    
+}
+
+.playAgainButton a {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: rgb(238, 174, 54);
-    z-index: 999999999;
-    width: 100vw;
-    height: 60px;
     padding: 10px 0px;
-    margin-top: 20px;
-    border-radius: 10px;
+    text-decoration: none;
+    color: black;
+    z-index: 999999999;
+    height: 30px;
+    width: 100%;
     font-weight: bold;
 }
 
@@ -306,22 +310,33 @@ figure img {
     .nameWrap{
         justify-content: center;
     }
-    .resultButton.show,
-    #playAgainButton.show {
-        top: 35vh;
-        left: 38vw;
+    .resultButton.show {
         width: 200px;
         padding: 20px 0px;
         margin-top: 20px;
-        border-radius: 7px;
         font-size: 1.5rem;
         font-weight: bold;
     }  
     
-    #playAgainButton.show {
-        top: 20vh;
+    
+    .wrongStudent.show {
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+        background-color: whitesmoke;
+        padding-top: 30px;
+      
     }
+
+    figure {
+        min-width: 30vw;
+        margin: 0;
     }
+
+    figure img {
+        margin: 0;
+    }
+}
 
     /****************************************/
 
@@ -346,8 +361,7 @@ figure img {
             justify-content: space-evenly;
         }
 
-        .resultButton.show,
-        #playAgainButton.show {
+        .resultButton.show {
             left: 44vw;
         }
     }   

@@ -1,10 +1,10 @@
 const photoEl = document.querySelector('.photo');
 const guessBtnWrap = document.querySelector('.guessBtnWrap');
-const lightboxEl = document.querySelector('#lightboxWrapper')
-const playAgainButtonEl = document.querySelector('#playAgainButton')
+const lightboxEl = document.querySelector('#lightboxWrapper');
+const playAgainButtonEl = document.querySelector('.playAgainButton');
 const resultEl = document.querySelector('#result');
 const resultButtonEl = document.querySelector('.resultButton');
-const resultSpanEl = document.querySelector('SPAN')
+const resultSpanEl = document.querySelector('SPAN');
 const wrongStudentsEl = document.querySelector('.wrongStudent');
 
 //-------------ARRAYS-----------------------------------------------------------------------------
@@ -268,7 +268,6 @@ playAgainButtonEl.addEventListener('click', e => {
 
 	if ('BUTTON' === e.target.tagName) {
         //Rensar arrays
-        correctAnswer = [];  
         incorrectAnswer = [];  
 		guesses = 0; 	//När spelet är slut nollställs räknaren
 		correctPoints = 0;
@@ -279,7 +278,7 @@ playAgainButtonEl.addEventListener('click', e => {
 		lightboxEl.classList.remove('show'); // Dölj lightbox
 		wrongStudentsEl.classList.remove('show')
 	}	
-    showStudent(); //annars visar den smma person om man väljer att spela igen.			
+    showStudent(); //annars visar den samma person om man väljer att spela igen.			
 });
 
 showStudent();
