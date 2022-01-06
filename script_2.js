@@ -254,7 +254,7 @@ resultButtonEl.addEventListener('click', e => {
 		resultEl.classList.add('show');
 		resultEl.innerText = `Antal rätt: ${correctPoints}/${guesses}`; //poäng
 		resultSpanEl.classList.add('show')
-		resultSpanEl.innerText = `Du gissade fel på ${guesses - correctPoints} personer:`;
+		resultSpanEl.innerText = `Du gissade fel på ${guesses - correctPoints} personer`;
 		playAgainButtonEl.classList.add('show');
 		wrongStudentsEl.classList.add('show')
 		photoEl.src = "";
@@ -265,8 +265,6 @@ resultButtonEl.addEventListener('click', e => {
 		wrongStudentsEl.classList.remove('show');
 	}
 });
-
-
 
 //------------------PLAY AGAIN BUTTON--------------------------------------
 
