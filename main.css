@@ -160,7 +160,7 @@ h2 {
 
 /*----------------------------------*/
 
-#resultWrap {
+.resultWrap {
     display: flex;
     flex-direction: column;
     justify-content: center;
