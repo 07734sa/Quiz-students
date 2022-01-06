@@ -1,4 +1,3 @@
-
 const photoEl = document.querySelector('.photo');
 const guessBtnWrapEl = document.querySelector('.guessBtnWrap');
 const lightboxEl = document.querySelector('#lightboxWrapper');
@@ -289,5 +288,4 @@ playAgainButtonEl.addEventListener('click', e => {
 });
 
 showStudent();
-
 

@@ -14,6 +14,7 @@ body {
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     background-color: whitesmoke;
 }
+
 /*-----------------------------------*/
 /*---------header--------------------*/
 
@@ -104,7 +105,6 @@ h2 {
 .guessBtnWrap.hide {
     display: none;
 }
-
 .guessBtnWrap {
     display: flex;
     flex-direction: column;
@@ -251,10 +251,6 @@ figure {
     height: 50vh;    
 }
 
-.background {
-    display: none;
-}
-
 /*-----------------------------------------*/
 .playAgainButton {
     display: none;
@@ -366,4 +362,5 @@ figure {
             flex-wrap: wrap;
             justify-content: space-evenly;
         }
+
     }   
