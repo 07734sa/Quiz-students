@@ -1,9 +1,11 @@
 const photoEl = document.querySelector('.photo');
-const guessBtnWrap = document.querySelector('.guessBtnWrap');
-const lightboxEl = document.querySelector('#lightboxWrapper')
-const playAgainButtonEl = document.querySelector('#playAgainButton')
+const guessBtnWrapEl = document.querySelector('.guessBtnWrap');
+const lightboxEl = document.querySelector('#lightboxWrapper');
+const playAgainButtonEl = document.querySelector('.playAgainButton');
 const resultEl = document.querySelector('#result');
 const resultButtonEl = document.querySelector('.resultButton');
+const resultSpanEl = document.querySelector('SPAN');
+const wrongStudentsEl = document.querySelector('.wrongStudent');
 
 //-------------ARRAYS-----------------------------------------------------------------------------
 
@@ -165,9 +167,10 @@ const students = [
 		"image": "img/wiktoria-dobrzewinska.jpg",
 	},
 ];
-let correctAnswer = [];  
 let incorrectAnswer = [];  
+
 //---------------------------
+
 let names;
 let correctGuessIndex = "";
 let guesses = 0;
@@ -188,7 +191,7 @@ const shuffleArray = (array) => { //shuffle names in copied array
 //-----------SHOW ONE IMAGE AND 4 BUTTONS WITH NAMES-------------------------------------------
 
 const showStudent = () => { // skapar en funktion för att kunna kalla på den igen
-	guessBtnWrap.innerHTML = ""; //Gör att fler knappar ej skapas.
+	guessBtnWrapEl.innerHTML = ""; //Gör att fler knappar ej skapas.
 	shuffleArray(students); //shufflar studenterna
 
 	const studentSlice = students.slice(0,4); // Plockar ut fyra första studenterna
@@ -201,13 +204,13 @@ const showStudent = () => { // skapar en funktion för att kunna kalla på den i
  	names = studentSlice.map(students => students.name); //Plockar ut de fyra namnen till en ny array.
 
 	names.forEach(name => { //För varje namn skapas en knapp.
-		guessBtnWrap.innerHTML += `<button class="guess">${name}</button>`;
+		guessBtnWrapEl.innerHTML += `<button class="guess">${name}</button>`;
 	}); 
 };
 
 //------------START GAME------------------------------------------------------
 
-guessBtnWrap.addEventListener('click', e => {
+guessBtnWrapEl.addEventListener('click', e => {
     e.preventDefault();
   
     if (e.target.tagName === 'BUTTON') {
@@ -215,13 +218,11 @@ guessBtnWrap.addEventListener('click', e => {
     
         if (e.target.innerText === correctGuessIndex.name) {
             correctPoints++;
-
-            correctAnswer.push(correctGuessIndex)
-            console.log(correctAnswer)
+            //console.log(correctAnswer)
 
         }  else {
-            incorrectAnswer.push(correctGuessIndex)
-            console.log(incorrectAnswer)
+			incorrectAnswer.push(correctGuessIndex)
+            //console.log(incorrectAnswer)
         }
 
         if (guesses === 10) {
@@ -238,14 +239,34 @@ resultButtonEl.addEventListener('click', e => {
 	e.preventDefault();
 	console.log(e.target)
 
-	if ('BUTTON' === e.target.tagName) {
+	incorrectAnswer.forEach(answer => {
+		wrongStudentsEl.innerHTML += `
+		<figure>
+			<img src="${answer.image}"
+			<figcaption>${answer.name}</figcaption>
+		</figure>
+		`			
+	})	
 
+	if ('BUTTON' === e.target.tagName) {
+		lightboxEl.classList.remove('show');
 		resultButtonEl.classList.remove('show'); // resultatknappen döljs
 		resultEl.classList.add('show');
 		resultEl.innerText = `Antal rätt: ${correctPoints}/${guesses}`; //poäng
+		resultSpanEl.classList.add('show')
+		resultSpanEl.innerText = `Du gissade fel på ${guesses - correctPoints} personer:`;
 		playAgainButtonEl.classList.add('show');
+		wrongStudentsEl.classList.add('show')
+		photoEl.src = "";
+		guessBtnWrapEl.classList.add('hide')
 	}	
+
+	if (correctPoints === 10) {
+		wrongStudentsEl.classList.remove('show');
+	}
 });
+
+
 
 //------------------PLAY AGAIN BUTTON--------------------------------------
 
@@ -253,19 +274,17 @@ playAgainButtonEl.addEventListener('click', e => {
 
 	if ('BUTTON' === e.target.tagName) {
         //Rensar arrays
-        correctAnswer = [];  
         incorrectAnswer = [];  
-    
 		guesses = 0; 	//När spelet är slut nollställs räknaren
 		correctPoints = 0;
 
 		resultEl.classList.remove('show');	//Dölj resultat
+		resultSpanEl.classList.remove('show')
 		playAgainButtonEl.classList.remove('show'); //Dölj splela-igen-knappen
 		lightboxEl.classList.remove('show'); // Dölj lightbox
+		wrongStudentsEl.classList.remove('show')
 	}	
-    showStudent(); //annars visar den smma person om man väljer att spela igen.			
+    showStudent(); //annars visar den samma person om man väljer att spela igen.			
 });
 
 showStudent();
-
-

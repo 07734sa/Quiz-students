@@ -10,8 +10,9 @@
     
 
 body {
-    margin: 0;  
+    margin: auto;  
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    background-color: whitesmoke;
 }
 
 /*-----------------------------------*/
@@ -24,38 +25,38 @@ body {
     border: 1px solid black;
     height: 100px; 
     background-color: rgb(255, 188, 62);
-
+    box-sizing: border-box;
 }
 
 header {
     display: flex;
     align-items: center;
+    justify-content: center;
     width: 100%;
     height: 100%;
     box-sizing: border-box;
 }
 
 h1 {
-    padding-left: 20px;
     font-family: 'Rock Salt', cursive;
     font-size: 1.5rem;
-    width: 100%;
-    text-align: center;
 }
 
 /*----------main-------------------*/
 
 main {
     display: flex;
+    width: 100vw;
     padding-bottom: 20px;
     box-sizing: border-box;
+    position: relative;
 }
 
 .secWrapper {
     display: flex;
     flex-direction: column;
     width: 100%;
-    background-color: rgb(230, 227, 227);
+    background-color: whitesmoke;
     box-sizing: border-box;
 }
 
@@ -67,7 +68,7 @@ main {
     align-items: center;
     margin: 0;
     height: 50vh;
-    background-color: rgb(253, 246, 246);
+    background-color: whitesmoke;
     box-sizing: border-box;
 }
 
@@ -86,10 +87,9 @@ h2 {
     flex-direction: column;
     justify-content: center;
     width: 100%;
-    max-height: auto ;
     padding: 0px 10px;
     box-sizing: border-box;
-    background-color: rgb(253, 246, 246);
+    background-color: whitesmoke;
 }
 
 /*----Guess buttons-wrapper--------*/
@@ -102,6 +102,9 @@ h2 {
     box-sizing: border-box;
 }
 
+.guessBtnWrap.hide {
+    display: none;
+}
 .guessBtnWrap {
     display: flex;
     flex-direction: column;
@@ -110,6 +113,9 @@ h2 {
 }
 
 /*----Buttons in JS with names----*/
+.guess {
+    display: none;
+}
 
 .guess {
     display: flex;
@@ -140,22 +146,28 @@ h2 {
 
 #lightboxWrapper {
     display: none;
-    background-color: rgba(245, 245, 245, 0.795);
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
 }
 
 #lightboxWrapper.show {
     display: flex;
+    flex-direction: column;
+    background-color: rgba(245, 245, 245, 0.796);
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0px;
 }
 
 /*----------------------------------*/
 
 #resultWrap {
-    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 100px;
+    left: 0;
     width: 100%;
     height: 100%;
 }
@@ -168,52 +180,102 @@ h2 {
 
 .resultButton.show {
     display: flex;
+    align-items: center;
     justify-content: center;
     position: fixed;
     top: 35vh;
-    left: 39vw;
     width: 100px;
     padding: 10px 0px;
-    margin-top: 20px;
     border-radius: 10px;
     font-weight: bold;
     background-color: rgb(125, 211, 125);
-    z-index: 10;
+    z-index: 1000;
 }
 
 /*----------Result text----------------------------*/
-#result{
+#result {
     display: none;
 }
 
 #result.show {
     display: flex;
     justify-content: center;
-    position: fixed;
-    top: 35vh;
-    left: 1vw;
+    padding-top: 10px;
+    position: absolute;
+    top: 0px;
+    left: 0px;
     width: 100%;
+    height: 100px;
+    margin: auto;
+    background-color: whitesmoke;
     font-size: 2rem;
     z-index: 1000;
 }
 
-/*-----------------------------------------*/
-#playAgainButton {
+span {
     display: none;
-    background-color: rgb(238, 174, 54);
 }
 
-#playAgainButton.show {
+span.show {
     display: flex;
     justify-content: center;
-    position: fixed;
-    top: 28vh;
-    left: 39vw;
-    z-index: 10;
-    width: 100px;
+    width: 100%;
+    position: absolute;
+    top: 65px;
+    left: 0;
+    z-index: 9999999;
+}
+
+/*------------Wrong guesses------------------------*/
+
+.wrongStudent {
+    display: none;
+}
+
+.wrongStudent.show {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    background-color: whitesmoke;
+    position: absolute;
+    top: 110px;
+    z-index: 9999999;
+}
+
+figure {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 50vh;    
+}
+
+/*-----------------------------------------*/
+.playAgainButton {
+    display: none;
+}
+
+.playAgainButton.show {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    position: absolute;
+    top: 80px;
+    
+}
+
+.playAgainButton a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     padding: 10px 0px;
-    margin-top: 20px;
-    border-radius: 10px;
+    text-decoration: none;
+    color: black;
+    z-index: 999999999;
+    height: 30px;
+    width: 100%;
     font-weight: bold;
 }
 
@@ -250,22 +312,33 @@ h2 {
     .nameWrap{
         justify-content: center;
     }
-    .resultButton.show,
-    #playAgainButton.show {
-        top: 35vh;
-        left: 38vw;
+    .resultButton.show {
         width: 200px;
         padding: 20px 0px;
         margin-top: 20px;
-        border-radius: 7px;
         font-size: 1.5rem;
         font-weight: bold;
     }  
     
-    #playAgainButton.show {
-        top: 20vh;
+    
+    .wrongStudent.show {
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+        background-color: whitesmoke;
+        padding-top: 30px;
+      
     }
+
+    figure {
+        min-width: 30vw;
+        margin: 0;
     }
+
+    figure img {
+        margin: 0;
+    }
+}
 
     /****************************************/
 
@@ -290,8 +363,4 @@ h2 {
             justify-content: space-evenly;
         }
 
-        .resultButton.show,
-        #playAgainButton.show {
-            left: 44vw;
-        }
     }   
