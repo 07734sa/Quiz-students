@@ -14,7 +14,6 @@ body {
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     background-color: whitesmoke;
 }
-
 /*-----------------------------------*/
 /*---------header--------------------*/
 
@@ -56,7 +55,7 @@ main {
     display: flex;
     flex-direction: column;
     width: 100%;
-    background-color: rgb(230, 227, 227);
+    background-color: whitesmoke;
     box-sizing: border-box;
 }
 
@@ -68,7 +67,7 @@ main {
     align-items: center;
     margin: 0;
     height: 50vh;
-    background-color: rgb(253, 246, 246);
+    background-color: whitesmoke;
     box-sizing: border-box;
 }
 
@@ -89,7 +88,7 @@ h2 {
     width: 100%;
     padding: 0px 10px;
     box-sizing: border-box;
-    background-color: rgb(253, 246, 246);
+    background-color: whitesmoke;
 }
 
 /*----Guess buttons-wrapper--------*/
@@ -100,6 +99,10 @@ h2 {
     justify-content: center;
     width: 100%;
     box-sizing: border-box;
+}
+
+.guessBtnWrap.hide {
+    display: none;
 }
 
 .guessBtnWrap {
@@ -177,13 +180,12 @@ h2 {
 
 .resultButton.show {
     display: flex;
+    align-items: center;
     justify-content: center;
     position: fixed;
     top: 35vh;
-    left: 39vw;
     width: 100px;
     padding: 10px 0px;
-    margin-top: 20px;
     border-radius: 10px;
     font-weight: bold;
     background-color: rgb(125, 211, 125);
@@ -202,7 +204,7 @@ h2 {
     position: absolute;
     top: 0px;
     left: 0px;
-    width: 100vw;
+    width: 100%;
     height: 100px;
     margin: auto;
     background-color: whitesmoke;
@@ -217,7 +219,7 @@ span {
 span.show {
     display: flex;
     justify-content: center;
-    width: 100vw;
+    width: 100%;
     position: absolute;
     top: 65px;
     left: 0;
@@ -247,6 +249,10 @@ figure {
     flex-direction: column;
     align-items: center;
     height: 50vh;    
+}
+
+.background {
+    display: none;
 }
 
 /*-----------------------------------------*/
@@ -359,9 +365,5 @@ figure {
             flex-direction: row;
             flex-wrap: wrap;
             justify-content: space-evenly;
-        }
-
-        .resultButton.show {
-            left: 44vw;
         }
     }   
