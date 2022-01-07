@@ -252,14 +252,7 @@ resultButtonEl.addEventListener('click', e => {
 		`			
 	});	
 
-	incorrectAnswer.forEach(answer => {
-		wrongStudentsEl.innerHTML += `
-		<figure>
-			<img src="${answer.image}"
-			<figcaption>${answer.name}</figcaption>
-		</figure>
-		`			
-	})	
+	if ('BUTTON' === e.target.tagName) {
 
 		lightboxEl.classList.remove('show');
 		resultButtonEl.classList.remove('show'); // resultatknappen döljs
@@ -271,7 +264,8 @@ resultButtonEl.addEventListener('click', e => {
 		wrongStudentsEl.classList.add('show'); //visar felaktiga studenter
 		photoEl.src = ""; 
 		guessBtnWrapEl.classList.add('hide');	
-
+	}
+	
 	if (correctPoints === 10) {
 		wrongStudentsEl.classList.remove('show');
 	};

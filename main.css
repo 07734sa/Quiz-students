@@ -103,6 +103,7 @@ h2 {
 .guessBtnWrap.hide {
     display: none;
 }
+
 .guessBtnWrap {
     display: flex;
     flex-direction: column;
