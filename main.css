@@ -65,7 +65,7 @@ main {
     justify-content: center;
     align-items: center;
     height: 50vh;
-    padding: 20px 0px 0px 20px;
+    padding: 10px 0px 0px 20px;
     background-color: whitesmoke;
     box-sizing: border-box;
 }
@@ -134,10 +134,10 @@ h2 {
     box-sizing: border-box;
 }
 
-.correct:active {
+.correct {
     background-color: green;
 }
-.wrong:active {
+.wrong {
     background-color: red;
 }
 
