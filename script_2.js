@@ -1,3 +1,4 @@
+
 const guessBtnWrapEl = document.querySelector('.guessBtnWrap');
 const lightboxEl = document.querySelector('#lightboxWrapper');
 const photoEl = document.querySelector('.photo');
@@ -13,168 +14,213 @@ const students = [
 	{
 		"name" : "Adi Dzocaj",
 		"image": "img/adi-dzocaj.jpg",
+		"gender": "m",
 	},
 	{
 		"name" : "Alexander Bergquist",
 		"image": "img/alexander-bergquist.jpg",
+		"gender": "m",
 	},
 	{
 		"name" : "Alexander Kocman",
 		"image": "img/alexander-kocman.jpg",
+		"gender": "m",
 	},
 	{
 		"name" : "Benjamin Benson",
 		"image": "img/benjamin-benson.jpg",
+		"gender": "m",
 	},
 	{
 		"name" : "Benjamin Tsubarah",
 		"image": "img/benjamin-tsubarah.jpg",
+		"gender": "m",
 	},
 	{
 		"name" : "Calle Nilsson",
 		"image": "img/calle-nilsson.jpg",
+		"gender": "m",
 	},
 	{
 		"name" : "Chikage Takahashi Molander",
 		"image": "img/chikage-takahashi-molander.jpg",
+		"gender": "f",
 	},
 	{
 		"name" : "Daniel Be",
 		"image": "img/daniel-be.jpg",
+		"gender": "m",
 	},
 	{
 		"name" : "Daniel Carlsson",
 		"image": "img/daniel-carlsson.jpg",
+		"gender": "m",
 	},
 	{
 		"name" : "Elin Ahlgren",
 		"image": "img/elin-ahlgren.jpg",
+		"gender": "f",
 	},
 	{
 		"name" : "Emma Käck",
 		"image": "img/emma-kack.jpg",
+		"gender": "f",
 	},
 	{
 		"name" : "Eric Ståhl",
 		"image": "img/eric-stahl.jpg",
+		"gender": "m",
 	},
 	{
 		"name" : "Frans Gustavson Påsse",
 		"image": "img/frans-gustavson-passe.jpg",
+		"gender": "m",
 	},
 	{
 		"name" : "Glafira Veretennikova",
 		"image": "img/glafira-veretennikova.jpg",
+		"gender": "f",
 	},
 	{
 		"name" : "Gustaf Grönlund",
 		"image": "img/gustaf-gronlund.jpg",
+		"gender": "m",
 	},
 	{
 		"name" : "Hanna Håkanson",
 		"image": "img/hanna-hakanson.jpg",
+		"gender": "f",
 	},
 	{
 		"name" : "Heidi Sjöberg",
 		"image": "img/heidi-sjoberg.jpg",
+		"gender": "f",
 	},
 	{
 		"name" : "Hugo Carzborn",
 		"image": "img/hugo-carzborn.jpg",
+		"gender": "m",
 	},
 	{
 		"name" : "Jesper Kling",
 		"image": "img/jesper-kling.jpg",
+		"gender": "m",
 	},
 	{
 		"name" : "Johan Ranestam",
 		"image": "img/johan-ranestam.jpg",
+		"gender": "m",
 	},
 	{
 		"name" : "Johanna Bäckström",
 		"image": "img/johanna-backstrom.jpg",
+		"gender": "f",
 	},
 	{
 		"name" : "Johanna Jönsson",
 		"image": "img/johanna-jonsson.jpg",
+		"gender": "f",
 	},
 	{
 		"name" : "Jona Torsson",
 		"image": "img/jona-torsson.jpg",
+		"gender": "m",
 	},
 	{
 		"name" : "Josefine Ahlstedt",
 		"image": "img/josefine-ahlstedt.jpg",
+		"gender": "f",
 	},
 	{
 		"name" : "Julia Jespersdotter Högman",
 		"image": "img/julia-jespersdotter-hogman.jpg",
+		"gender": "f",
 	},
 	{
 		"name" : "Julia Nemell",
 		"image": "img/julia-nemell.jpg",
+		"gender": "f",
 	},
 	{
 		"name" : "Linus Lindberg",
 		"image": "img/linus-lindberg.jpg",
+		"gender": "m",
 	},
 	{
 		"name" : "Malin Olsson",
 		"image": "img/malin-olsson.jpg",
+		"gender": "f",
 	},
 	{
 		"name" : "Maria Haara-Lundhammar",
 		"image": "img/maria-haara-lundhammar.jpg",
+		"gender": "f",
 	},
 	{
 		"name" : "Maria Lövgren",
 		"image": "img/maria-lovgren.jpg",
+		"gender": "f",
 	},
 	{
 		"name" : "Nikola Dimitrijoski",
 		"image": "img/nikola-dimitrijoski.jpg",
+		"gender": "m",
 	},
 	{
 		"name" : "Paulina Kiendys",
 		"image": "img/paulina-kiendys.jpg",
+		"gender": "f",
 	},
 	{
 		"name" : "Raymond Lam",
 		"image": "img/raymond-lam.jpg",
+		"gender": "m",
 	},
 	{
 		"name" : "Robin Karlsson",
 		"image": "img/robin-karlsson.jpg",
+		"gender": "m",
 	},
 	{
 		"name" : "Sara Almqvist",
 		"image": "img/sara-almqvist.jpg",
+		"gender": "f",
 	},
 	{
 		"name" : "Tim Nilsson",
 		"image": "img/tim-nilsson.jpg",
+		"gender": "m",
 	},
 	{
 		"name" : "Tirapat Sukjit",
 		"image": "img/tirapat-sukjit.jpg",
+		"gender": "m",
 	},
 	{
 		"name" : "Tobias Silfverberg",
 		"image": "img/tobias-silfverberg.jpg",
+		"gender": "m",
 	},
 	{
 		"name" : "Wiktoria Dobrzewinska",
 		"image": "img/wiktoria-dobrzewinska.jpg",
+		"gender": "f",
 	},
 ];
 let incorrectAnswer = [];  
+let firstStudent = []
 
 //---------------------------
-
 let names;
+let sortGender;
 let correctGuessIndex = "";
 let guesses = 0;
 let correctPoints = 0;
+
+// gender = students.map(function (gender) {
+// 	return students.gender;
+// });
+
 
 //----------SHUFFLE STUDENTS-------------------------------------------------
 
@@ -194,20 +240,30 @@ const showStudent = () => { // skapar en funktion för att kunna kalla på den i
 	guessBtnWrapEl.innerHTML = ""; //Gör att fler knappar ej skapas.
 	shuffleArray(students); //shufflar studenterna
 
-	const studentSlice = students.slice(0,4); // Plockar ut fyra första studenterna
-    correctGuessIndex = students[0];	//Rätt svar på index 
-	photoEl.src = correctGuessIndex.image; //Plockar fram bild
+		const male = students.filter(student => student.gender === "m");
+		const female = students.filter(students => students.gender === "f");
 
-	shuffleArray(studentSlice); //shufflar slice-arna så rätt svar inte alltid är på samma plats
-	//console.log(correctGuessIndex);
+		const studentSlice = students.slice(0, 4)
+		correctGuessIndex = students[0];	//Rätt svar på index 
+		photoEl.src = correctGuessIndex.image; //Plockar fram bild
 
- 	names = studentSlice.map(students => students.name); //Plockar ut de fyra namnen till en ny array.
+		shuffleArray(studentSlice); //shufflar slice-arna så rätt svar inte alltid är på samma plats
+		//console.log(correctGuessIndex);
 
-	names.forEach(name => { //För varje namn skapas en knapp.
-		guessBtnWrapEl.innerHTML += `<button class="guess">${name}</button>`;
-	}); 
+		if (correctGuessIndex.gender == male) {
+			names = male.map(students => students.name); //Plockar ut de fyra namnen till en ny array.
+			names.forEach(name => { //För varje namn skapas en knapp.
+				guessBtnWrapEl.innerHTML += `<button class="guess">${name}</button>`;
+				}); 
+
+		} 	else if (correctGuessIndex.gender == female) {
+				names = female.map(students => students.name); //Plockar ut de fyra namnen till en ny array.
+				names.forEach(name => { //För varje namn skapas en knapp.
+					guessBtnWrapEl.innerHTML += `<button class="guess">${name}</button>`;
+				}); 
+		}
+	
 };
-
 //------------START GAME------------------------------------------------------
 
 guessBtnWrapEl.addEventListener('click', e => {
@@ -291,4 +347,9 @@ playAgainButtonEl.addEventListener('click', e => {
 });
 
 showStudent();
+
+
+//----------SHUFFLE STUDENTS-------------------------------------------------
+
+
 
