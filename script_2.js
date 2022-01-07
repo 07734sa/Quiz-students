@@ -1,6 +1,6 @@
-const photoEl = document.querySelector('.photo');
 const guessBtnWrapEl = document.querySelector('.guessBtnWrap');
 const lightboxEl = document.querySelector('#lightboxWrapper');
+const photoEl = document.querySelector('.photo');
 const playAgainButtonEl = document.querySelector('.playAgainButton');
 const resultEl = document.querySelector('#result');
 const resultButtonEl = document.querySelector('.resultButton');
@@ -218,10 +218,12 @@ guessBtnWrapEl.addEventListener('click', e => {
     
         if (e.target.innerText === correctGuessIndex.name) {
             correctPoints++;
-            //console.log(correctAnswer)
+			e.target.classList.add ('correct');
+			//console.log(correctAnswer)
 
         }  else {
-			incorrectAnswer.push(correctGuessIndex)
+			incorrectAnswer.push(correctGuessIndex);
+			e.target.classList.add('wrong');
             //console.log(incorrectAnswer)
         }
 
@@ -229,15 +231,26 @@ guessBtnWrapEl.addEventListener('click', e => {
             lightboxEl.classList.add('show');
             resultButtonEl.classList.add('show');//...och resultatknappen
         }
+		setTimeout(() => { //annars hinner man inte se färgen på knapparna.
+			showStudent();
+		}, 50);
     }
-    showStudent();
 });
 
 //----------------RESULT BUTTON-------------------------------------------
 
 resultButtonEl.addEventListener('click', e => {
 	e.preventDefault();
-	console.log(e.target)
+	//console.log(e.target)
+
+	incorrectAnswer.forEach(answer => {
+		wrongStudentsEl.innerHTML += `
+		<figure>
+			<img src="${answer.image}"
+			<figcaption>${answer.name}</figcaption>
+		</figure>
+		`			
+	});	
 
 	incorrectAnswer.forEach(answer => {
 		wrongStudentsEl.innerHTML += `
@@ -248,7 +261,6 @@ resultButtonEl.addEventListener('click', e => {
 		`			
 	})	
 
-	if ('BUTTON' === e.target.tagName) {
 		lightboxEl.classList.remove('show');
 		resultButtonEl.classList.remove('show'); // resultatknappen döljs
 		resultEl.classList.add('show');
@@ -256,14 +268,13 @@ resultButtonEl.addEventListener('click', e => {
 		resultSpanEl.classList.add('show')
 		resultSpanEl.innerText = `Du gissade fel på ${guesses - correctPoints} personer`;
 		playAgainButtonEl.classList.add('show');
-		wrongStudentsEl.classList.add('show')
-		photoEl.src = "";
-		guessBtnWrapEl.classList.add('hide')
-	}	
+		wrongStudentsEl.classList.add('show'); //visar felaktiga studenter
+		photoEl.src = ""; 
+		guessBtnWrapEl.classList.add('hide');	
 
 	if (correctPoints === 10) {
 		wrongStudentsEl.classList.remove('show');
-	}
+	};
 });
 
 //------------------PLAY AGAIN BUTTON--------------------------------------
@@ -277,12 +288,13 @@ playAgainButtonEl.addEventListener('click', e => {
 		correctPoints = 0;
 
 		resultEl.classList.remove('show');	//Dölj resultat
-		resultSpanEl.classList.remove('show')
+		resultSpanEl.classList.remove('show');
 		playAgainButtonEl.classList.remove('show'); //Dölj splela-igen-knappen
 		lightboxEl.classList.remove('show'); // Dölj lightbox
-		wrongStudentsEl.classList.remove('show')
+		wrongStudentsEl.classList.remove('show');
 	}	
-    showStudent(); //annars visar den samma person om man väljer att spela igen.			
+    showStudent(); //annars visar den senast visade person igen om man väljer att spela igen.			
 });
 
 showStudent();
+
