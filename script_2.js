@@ -2,9 +2,9 @@
 const guessBtnWrapEl = document.querySelector('.guessBtnWrap');
 const lightboxEl = document.querySelector('#lightboxWrapper');
 const photoEl = document.querySelector('.photo');
-const playAgainButtonEl = document.querySelector('.playAgainButton');
+const playAgainBtnEl = document.querySelector('.playAgainButton');
 const resultEl = document.querySelector('#result');
-const resultButtonEl = document.querySelector('.resultButton');
+const resultBtnEl = document.querySelector('.resultButton');
 const resultSpanEl = document.querySelector('SPAN');
 const wrongStudentsEl = document.querySelector('.wrongStudent');
 
@@ -212,7 +212,7 @@ let firstStudent = []
 
 //---------------------------
 let genderSlice;
-let studentSlice = ""
+let studentSlice = "";
 
 let names;
 let correctGuessIndex = "";
@@ -228,7 +228,7 @@ const shuffleArray = (array) => { //shuffle names in copied array
         const  temp = array[i];
         array[i] = array[j];
         array[j] = temp;
-    }
+    };
 };
 
 //--------- SORT BY GENDER AND SHOW STUDENT ------------------------
@@ -261,7 +261,7 @@ const showStudent = ()  => {
 		console.log(correctGuessIndex)
 	};
 
-	names.forEach(name => { //For each name, make 1 button.
+	names.forEach(name => { //Make one btn for each name.
 		guessBtnWrapEl.innerHTML += `<button class="guess">${name}</button>`;
 	});
 };
@@ -287,18 +287,18 @@ guessBtnWrapEl.addEventListener('click', e => {
 
         if (guesses === 10) {
             lightboxEl.classList.add('show');
-            resultButtonEl.classList.add('show');//...och resultatknappen
+            resultBtnEl.classList.add('show');// Game over- show result btn
         }
-		
-		setTimeout(() => { //annars hinner man inte se färgen på knapparna.
+
+		setTimeout(() => { // Otherwise you're not able to see live feedback.
 			showStudent();
 		}, 50);
-    }
+    };
 });
 
-//---------------- RESULT BUTTON -------------------------------------------
+//---------------- RESULT ---------------------------------------------------
 
-resultButtonEl.addEventListener('click', e => {
+resultBtnEl.addEventListener('click', e => {
 	e.preventDefault();
 	//console.log(e.target)
 
@@ -314,13 +314,13 @@ resultButtonEl.addEventListener('click', e => {
 	if ('BUTTON' === e.target.tagName) {
 
 		lightboxEl.classList.remove('show');
-		resultButtonEl.classList.remove('show'); // resultatknappen döljs
+		resultBtnEl.classList.remove('show'); 
 		resultEl.classList.add('show');
-		resultEl.innerText = `Antal rätt: ${correctPoints}/${guesses}`; //poäng
+		resultEl.innerText = `Antal rätt: ${correctPoints}/${guesses}`; 
 		resultSpanEl.classList.add('show')
 		resultSpanEl.innerText = `Du gissade fel på ${guesses - correctPoints} personer`;
-		playAgainButtonEl.classList.add('show');
-		wrongStudentsEl.classList.add('show'); //visar felaktiga studenter
+		playAgainBtnEl.classList.add('show'); 
+		wrongStudentsEl.classList.add('show'); // Show wrong guesses.
 		photoEl.src = ""; 
 		guessBtnWrapEl.classList.add('hide');	
 	}
@@ -332,27 +332,24 @@ resultButtonEl.addEventListener('click', e => {
 
 //------------------PLAY AGAIN BUTTON--------------------------------------
 
-playAgainButtonEl.addEventListener('click', e => {
+playAgainBtnEl.addEventListener('click', e => {
 
 	if ('BUTTON' === e.target.tagName) {
-        //Rensar arrays
+        //Clears arrays for new game
         incorrectAnswer = [];  
-		guesses = 0; 	//När spelet är slut nollställs räknaren
+		guesses = 0; 	// Reset counter.
 		correctPoints = 0;
 
-		resultEl.classList.remove('show');	//Dölj resultat
+		resultEl.classList.remove('show');	//Hide result.
 		resultSpanEl.classList.remove('show');
-		playAgainButtonEl.classList.remove('show'); //Dölj splela-igen-knappen
-		lightboxEl.classList.remove('show'); // Dölj lightbox
+		playAgainBtnEl.classList.remove('show'); 
+		lightboxEl.classList.remove('show'); 
 		wrongStudentsEl.classList.remove('show');
 	}	
-    showStudent(); //annars visar den senast visade person igen om man väljer att spela igen.			
+    showStudent(); // To prevent showing the same student.			
 });
 
 showStudent();
-
-
-//----------SHUFFLE STUDENTS-------------------------------------------------
 
 
 
