@@ -8,7 +8,7 @@ const resultButtonEl = document.querySelector('.resultButton');
 const resultSpanEl = document.querySelector('SPAN');
 const wrongStudentsEl = document.querySelector('.wrongStudent');
 
-//-------------ARRAYS-----------------------------------------------------------------------------
+//-------------ARRAYS------------------------------------------------
 
 const students = [
 	{
@@ -211,18 +211,15 @@ let incorrectAnswer = [];
 let firstStudent = []
 
 //---------------------------
+let genderSlice;
+let studentSlice = ""
+
 let names;
-let sortGender;
 let correctGuessIndex = "";
-let guesses = 0;
+let guesses = 0; 
 let correctPoints = 0;
 
-// gender = students.map(function (gender) {
-// 	return students.gender;
-// });
-
-
-//----------SHUFFLE STUDENTS-------------------------------------------------
+//--------- SHUFFLE STUDENTS ---------------------------------------
 
 //Fisher-Yates algorithm
 const shuffleArray = (array) => { //shuffle names in copied array
@@ -234,37 +231,42 @@ const shuffleArray = (array) => { //shuffle names in copied array
     }
 };
 
-//-----------SHOW ONE IMAGE AND 4 BUTTONS WITH NAMES-------------------------------------------
+//--------- SORT BY GENDER AND SHOW STUDENT ------------------------
 
-const showStudent = () => { // skapar en funktion för att kunna kalla på den igen
-	guessBtnWrapEl.innerHTML = ""; //Gör att fler knappar ej skapas.
-	shuffleArray(students); //shufflar studenterna
+const showStudent = ()  => {
 
-		const male = students.filter(student => student.gender === "m");
-		const female = students.filter(students => students.gender === "f");
+	guessBtnWrapEl.innerHTML = ""; //No more than 4 buttons
 
-		const studentSlice = students.slice(0, 4)
-		correctGuessIndex = students[0];	//Rätt svar på index 
-		photoEl.src = correctGuessIndex.image; //Plockar fram bild
+	shuffleArray(students); //Shuffles the students.
+	studentSlice = students.slice(0, 1); //Get one student as a referens.
+	correctGuessIndex = studentSlice[0]; //Correct answer at index 0.
+	photoEl.src = correctGuessIndex.image; //Get photo of student.
 
-		shuffleArray(studentSlice); //shufflar slice-arna så rätt svar inte alltid är på samma plats
-		//console.log(correctGuessIndex);
 
-		if (correctGuessIndex.gender == male) {
-			names = male.map(students => students.name); //Plockar ut de fyra namnen till en ny array.
-			names.forEach(name => { //För varje namn skapas en knapp.
-				guessBtnWrapEl.innerHTML += `<button class="guess">${name}</button>`;
-				}); 
+	if (correctGuessIndex.gender ===  "m") { // if it's a male...
 
-		} 	else if (correctGuessIndex.gender == female) {
-				names = female.map(students => students.name); //Plockar ut de fyra namnen till en ny array.
-				names.forEach(name => { //För varje namn skapas en knapp.
-					guessBtnWrapEl.innerHTML += `<button class="guess">${name}</button>`;
-				}); 
-		}
-	
+		const male = students.filter(student => student.gender === "m"); // get all male students.
+		const maleSlice = male.slice(1, 4); // get 3 more male students.
+		genderSlice = studentSlice.concat(maleSlice); // Make one slice.
+		shuffleArray(genderSlice); //shuffle to avoid the correct name from ending up in the same place.
+		names = genderSlice.map(students => students.name); //get the 4 names.
+
+	}	else if (correctGuessIndex.gender === "f")   {
+
+		const female = students.filter(student => student.gender === "f");
+		const femaleSlice = female.slice(1, 4);
+		genderSlice = studentSlice.concat(femaleSlice);
+		shuffleArray(genderSlice); 
+		names = genderSlice.map(students => students.name);
+		console.log(correctGuessIndex)
+	};
+
+	names.forEach(name => { //For each name, make 1 button.
+		guessBtnWrapEl.innerHTML += `<button class="guess">${name}</button>`;
+	});
 };
-//------------START GAME------------------------------------------------------
+
+//------------ START GAME ------------------------------------------------------
 
 guessBtnWrapEl.addEventListener('click', e => {
     e.preventDefault();
@@ -273,13 +275,13 @@ guessBtnWrapEl.addEventListener('click', e => {
         guesses++;
     
         if (e.target.innerText === correctGuessIndex.name) {
-            correctPoints++;
-			e.target.classList.add ('correct');
+            correctPoints++; 
+			e.target.classList.add ('correct'); //Green btn if correct guess.
 			//console.log(correctAnswer)
 
         }  else {
 			incorrectAnswer.push(correctGuessIndex);
-			e.target.classList.add('wrong');
+			e.target.classList.add('wrong'); //Red btn if wrong guess.
             //console.log(incorrectAnswer)
         }
 
@@ -287,13 +289,14 @@ guessBtnWrapEl.addEventListener('click', e => {
             lightboxEl.classList.add('show');
             resultButtonEl.classList.add('show');//...och resultatknappen
         }
+		
 		setTimeout(() => { //annars hinner man inte se färgen på knapparna.
 			showStudent();
 		}, 50);
     }
 });
 
-//----------------RESULT BUTTON-------------------------------------------
+//---------------- RESULT BUTTON -------------------------------------------
 
 resultButtonEl.addEventListener('click', e => {
 	e.preventDefault();
